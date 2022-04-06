@@ -5,14 +5,19 @@ public with sharing class Academy {
     * @author Fabio Barcelona García | 04-03-2022 
     * @return Map<Id, Id> 
     **/
-    public static Map<Id, Id> ex2() {
+    public static Map<Id, Boardgame__c> ex2() {
 
-        Map<Id, Id> prMap = new Map<Id, Id>();
+        List<Product2> prodList = new List<Product2>([SELECT Id, Juego_de_mesa__c FROM Product2 WHERE Juego_de_mesa__c <> null]);
+        List<Boardgame__c> boardGameList = new List<Boardgame__c>([SELECT Id FROM Boardgame__c]);
 
-        for(Product2 tmpProduct : [SELECT Juego_de_mesa__c FROM Product2 WHERE Juego_de_mesa__c <> null]) {
-            prMap.put(tmpProduct.Id, tmpProduct.Juego_de_mesa__c);
+        Map<Id, Boardgame__c> prBgMap = new Map<Id, Boardgame__c>();
+
+        for(Boardgame__c game : boardGameList) {
+            for(Product2 prod : prodList) {
+                if(prod.Juego_de_mesa__c == game.Id) {
+                    prBgMap.put(prod.Id, game);
+                }
+            }
         }
-
-        return prMap;
     }
 }
