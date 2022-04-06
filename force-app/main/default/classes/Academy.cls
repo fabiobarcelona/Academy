@@ -3,7 +3,7 @@ public with sharing class Academy {
     /**
     * @description Método estático que devuelva un mapa con el identificador de cada producto y el registro del Boardgame__c correspondiente.
     * @author Fabio Barcelona García | 04-03-2022 
-    * @return Map<Id, Id> 
+    * @return Map<Id, Boardgame__c> 
     **/
     public static Map<Id, Boardgame__c> ex2() {
 
@@ -19,5 +19,7 @@ public with sharing class Academy {
                 }
             }
         }
+
+        return prBgMap;
     }
 }
